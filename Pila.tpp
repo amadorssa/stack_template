@@ -173,9 +173,10 @@ void Pila<T>::Imprimir() const{
 */
 template<typename T>
 void Pila<T>::Redimensionar(){
+  cap = 2 * cap;
   T* arreglo = elementos;
-  elementos = new T [2*cap];
-  for (int i = 0; i < 2*cap; ++i){
+  elementos = new T [cap];
+  for (int i = 0; i < cap; ++i){
     elementos[i] = arreglo[i];
   }
   delete [] arreglo;

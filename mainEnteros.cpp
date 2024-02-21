@@ -1,38 +1,41 @@
 #include <iostream>
-#include <cctype>
 #include <string>
-
 #include "Pila.hpp"
-#include "Vector.hpp"
+
 
 using namespace std;
 
 int main() {
 
-    Pila<Vector> miPila;
+    Pila<int> miPila;
     string respuesta;
-    Vector v,w(3);
+    int valor;
 
     // Agregar elementos a la pila
     try {
-        cout << "********** Agregar elementos a la pila **********\n\n";       
-            
-            cout << "Agregando elementos al vector V\n";
-            cin >> v;
-
-            miPila.Agregar(v);
+        cout << "********** Agregar elementos a la pila **********\n\n";
+        
+        do {
+            cout << "Valor a agregar: ";
+            cin >> valor;
+            miPila.Agregar(valor);
             cout << "Elemento agregado. Ahora la pila tiene " << miPila.ObtenerTam() << " elemento(s)\n\n";
             miPila.Imprimir();
             cout << "\n\n";
 
-            cout << "Agregando elementos al vector W\n";
-            cin >> w;
+            do {
+                cout << "\250Quiere agregar otro elemento? (s/n): ";
+                cin >> respuesta;
 
-            miPila.Agregar(w);
-            cout << "Elemento agregado. Ahora la pila tiene " << miPila.ObtenerTam() << " elemento(s)\n\n";
-            miPila.Imprimir();
-            cout << "\n\n";
-
+                if (respuesta.length() == 1 && (respuesta[0] == 's' || respuesta[0] == 'n')) {
+                    respuesta[0] = tolower(respuesta[0]);
+                } else {
+                    cout << "Entrada invalida. Por favor ingrese 's' o 'n'.\n";
+                    respuesta = "";
+                }
+            } while (respuesta != "s" && respuesta != "n");
+            cin.ignore();
+        } while(respuesta == "s");
     
     } catch(const char *msn) {
         cerr << "Error: " << msn << endl;
@@ -51,13 +54,13 @@ int main() {
         cout << "La pila tiene capacidad para " << miPila.ObtenerCap() << " elemento(s)\n\n";
 
         // Crear una copia de la pila
-        Pila<Vector> miPilaCopia(miPila);
+        Pila<int> miPilaCopia(miPila);
         cout << "Copia de la pila:\n";
         miPilaCopia.Imprimir();
         cout << "\n\n";
 
         // Asignar la pila a otra pila
-        Pila<Vector> miPilaAsignada;
+        Pila<int> miPilaAsignada;
         miPilaAsignada = miPila;
         cout << "Pila asignada:\n";
         miPilaAsignada.Imprimir();
