@@ -1,7 +1,5 @@
 #ifndef PILA_HPP_INCLUDED
 #define PILA_HPP_INCLUDED
-#include <iostream>
-
 
 /**
  * \class Pila
@@ -12,7 +10,6 @@
 template<typename T>
 
 class Pila{
-
 
 public:
   Pila(unsigned int cap = 15); // Constructor
